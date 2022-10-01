@@ -1,6 +1,6 @@
 import jwt from 'jsonwebtoken';
 import jwtHelper from '../helpers/jwt.helper.js';
-import User from '../models/user.model.js';
+import { User } from '../models/user.model.js';
 import { Exception } from '../utils/exception.js';
 
 const authenticate = async (req, res, next) => {
