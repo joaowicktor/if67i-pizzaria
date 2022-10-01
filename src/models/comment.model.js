@@ -8,4 +8,4 @@ const CommentSchema = new Schema(
   { collection: 'comments', timestamps: true }
 );
 
-export default model('Comment', CommentSchema);
+export const Comment = model('Comment', CommentSchema);

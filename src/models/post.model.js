@@ -1,4 +1,6 @@
 import { Schema, model } from 'mongoose';
+import { Comment } from './comment.model.js';
+import { User } from './user.model.js';
 
 const PostSchema = new Schema(
   {
@@ -7,10 +9,10 @@ const PostSchema = new Schema(
     ingredients: [{ type: String, required: true }],
     image: { type: String, required: true },
     price: { type: Number, required: true },
-    user: { type: Schema.Types.ObjectId, ref: 'User' },
-    comments: [{ type: Schema.Types.ObjectId, ref: 'Comment' }],
+    user: { type: Schema.Types.ObjectId, ref: User },
+    comments: [{ type: Schema.Types.ObjectId, ref: Comment }],
   },
   { collection: 'posts', timestamps: true }
 );
 
-export default model('Post', PostSchema);
+export const Post = model('Post', PostSchema);

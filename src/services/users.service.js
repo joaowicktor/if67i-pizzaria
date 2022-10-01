@@ -1,4 +1,4 @@
-import User from '../models/User.js';
+import User from '../models/user.model.js';
 import { Exception } from '../utils/exception.js';
 
 const createUser = async (payload) => {

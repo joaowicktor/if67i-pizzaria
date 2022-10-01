@@ -1,14 +1,20 @@
-import { Schema, model } from 'mongoose';
 import bcrypt from 'bcrypt';
+import { model, Schema } from 'mongoose';
+import { Role } from '../models/role.model.js';
 
 const UserSchema = new Schema(
   {
     name: { type: String, required: true },
     email: { type: String, required: true, unique: true },
-    password: { type: String, required: true },
+    password: { type: String, required: true, select: false },
+    role: { type: Schema.Types.ObjectId, ref: Role, required: true },
   },
   { collection: 'users', timestamps: true }
 );
+
+UserSchema.methods.comparePassword = async function (password) {
+  return bcrypt.compare(password, this.password);
+};
 
 UserSchema.pre('save', async function (next) {
   if (!this.isModified('password')) {
@@ -19,4 +25,4 @@ UserSchema.pre('save', async function (next) {
   this.password = await bcrypt.hash(this.password, salt);
 });
 
-export default model('User', UserSchema);
+export const User = model('User', UserSchema);
