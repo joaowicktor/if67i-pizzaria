@@ -5,7 +5,7 @@ const generateToken = (subject, payload) =>
   new Promise((resolve, reject) => {
     jwt.sign(payload, process.env.JWT_SECRET, { subject, expiresIn: process.env.JWT_EXPIRES_IN }, (err, token) => {
       if (err) {
-        reject(err);
+        reject(new Exception({ message: 'Ocorreu um erro não esperado ao gerar o token', status: 500 }));
       }
       resolve(token);
     });
