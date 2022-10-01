@@ -1,5 +1,4 @@
 import usersService from '../services/users.service.js';
-import { handleError } from '../utils/handleError.js';
 
 const createUser = async (req, res, next) => {
   try {
