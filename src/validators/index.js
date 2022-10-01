@@ -5,6 +5,6 @@ export const validate = (schema) => async (req, res, next) => {
     await schema.validateAsync(req.body);
     next();
   } catch (err) {
-    handleError(err, res);
+    next(err);
   }
 };
