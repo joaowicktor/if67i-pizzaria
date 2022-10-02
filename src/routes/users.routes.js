@@ -7,6 +7,6 @@ import validator from '../validators/index.js';
 
 const router = express.Router();
 
-router.post('/', ac.authenticate, ac.authorize(Permission.CREATE_USER), validator.body(createUserValidator), usersController.createUser);
+router.post('/', ac.auth(Permission.CREATE_USER), validator.body(createUserValidator), usersController.createUser);
 
 export default router;

@@ -9,6 +9,6 @@ import { listPostFilterValidator } from '../validators/list-post-filter.validato
 const router = express.Router();
 
 router.get('/', validator.query(listPostFilterValidator), postsController.list);
-router.post('/', ac.authenticate, ac.authorize(Permission.CREATE_POST), validator.body(createPostValidator), postsController.create);
+  ac.auth(Permission.CREATE_POST),
 
 export default router;
