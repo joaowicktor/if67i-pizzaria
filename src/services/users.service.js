@@ -18,7 +18,13 @@ const createUser = async (payload) => {
   return user;
 };
 
+const updateSelfData = async (currentUser, payload) => {
+  await User.findByIdAndUpdate(currentUser.id, payload);
+  return;
+};
+
 export default {
   listUsers,
   createUser,
+  updateSelfData,
 };
