@@ -46,7 +46,7 @@ const auth = (permission) => async (req, res, next) => {
     const user = await authenticate(req.headers.authorization);
 
     if (permission) {
-      authorize(permission);
+      authorize(user, permission);
     }
 
     req.user = user;
