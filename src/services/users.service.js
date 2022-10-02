@@ -19,7 +19,16 @@ const createUser = async (payload) => {
 };
 
 const updateUser = async (id, payload) => {
-  await User.findByIdAndUpdate(id, payload);
+  const user = await User.findById(id);
+  if (!user) {
+    throw new Exception({
+      status: 404,
+      message: 'Usuário não encontrado',
+    });
+  }
+
+  await user.updateOne(payload);
+
   return;
 };
 

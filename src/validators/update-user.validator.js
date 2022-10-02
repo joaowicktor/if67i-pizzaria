@@ -31,3 +31,15 @@ export const updateUserValidator = joi
     'object.min': 'É necessário informar ao menos um campo para atualizar',
     'object.unknown': 'O campo {{#label}} não é permitido',
   });
+
+export const updateUserParamsValidator = joi.object({
+  id: joi
+    .string()
+    .regex(/^[0-9a-fA-F]{24}$/) // MongoDB ObjectId Regex
+    .required()
+    .messages({
+      'string.empty': 'O id não pode ser vazio',
+      'string.pattern.base': 'O id deve ser um ObjectId válido',
+      'any.required': 'O id é obrigatório',
+    }),
+});

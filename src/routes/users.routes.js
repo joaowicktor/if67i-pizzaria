@@ -11,7 +11,7 @@ const router = express.Router();
 
 router.get('/', ac.auth(Permission.READ_USER), usersController.list);
 router.post('/', ac.auth(Permission.CREATE_USER), validator.body(createUserValidator), usersController.createUser);
-router.put('/:id', ac.auth(Permission.EDIT_USER), validator.body(updateUserValidator), usersController.update);
+router.put('/:id', ac.auth(Permission.EDIT_USER), validator.params(updateUserParamsValidator), validator.body(updateUserValidator), usersController.update);
 router.patch('/me', ac.auth(), validator.body(updateSelfDataValidator), usersController.updateSelfData);
 
 export default router;
