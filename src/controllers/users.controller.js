@@ -18,6 +18,15 @@ const createUser = async (req, res, next) => {
   }
 };
 
+const update = async (req, res, next) => {
+  try {
+    await usersService.updateUser(req.params.id, req.body);
+    res.send();
+  } catch (err) {
+    next(err);
+  }
+};
+
 const updateSelfData = async (req, res, next) => {
   try {
     await usersService.updateSelfData(req.user, req.body);
@@ -30,5 +39,6 @@ const updateSelfData = async (req, res, next) => {
 export default {
   list,
   createUser,
+  update,
   updateSelfData,
 };
