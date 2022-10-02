@@ -19,4 +19,13 @@ export const createUserValidator = joi.object({
       'string.empty': 'A senha não pode ser vazia',
       'any.required': 'A senha é obrigatória',
     }),
+  role: joi
+    .string()
+    .regex(/^[0-9a-fA-F]{24}$/) // MongoDB ObjectId Regex
+    .required()
+    .messages({
+      'string.empty': 'O papel não pode ser vazio',
+      'string.pattern.base': 'O papel deve ser um ObjectId válido',
+      'any.required': 'O papel é obrigatório',
+    }),
 });
