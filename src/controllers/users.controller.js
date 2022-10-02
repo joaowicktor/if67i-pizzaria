@@ -36,9 +36,19 @@ const updateSelfData = async (req, res, next) => {
   }
 };
 
+const deleteUser = async (req, res, next) => {
+  try {
+    await usersService.deleteUser(req.params.id);
+    res.send();
+  } catch (err) {
+    next(err);
+  }
+}
+
 export default {
   list,
   createUser,
   update,
   updateSelfData,
+  deleteUser,
 };

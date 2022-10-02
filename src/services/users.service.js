@@ -4,7 +4,7 @@ import { Exception } from '../utils/exception.js';
 const listUsers = async () => {
   const users = await User.find().populate('role', 'name');
   return users;
-}
+};
 
 const createUser = async (payload) => {
   const existingUser = await User.findOne({ email: payload.email });
@@ -37,9 +37,15 @@ const updateSelfData = async (currentUser, payload) => {
   return;
 };
 
+const deleteUser = async (id) => {
+  await User.findByIdAndDelete(id);
+  return;
+};
+
 export default {
   listUsers,
   createUser,
   updateUser,
   updateSelfData,
+  deleteUser,
 };
