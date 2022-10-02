@@ -1,6 +1,20 @@
 import jsonHelper from '../helpers/json.helper.js';
 
 /**
+ * Validate the request route params based on the given Joi schema
+ * @param {import('joi').Schema} schema
+ * @returns {function} next
+ */
+const params = (schema) => async (req, res, next) => {
+  try {
+    await schema.validateAsync(req.params);
+    next();
+  } catch (err) {
+    next(err);
+  }
+};
+
+/**
  * Validate the request query params based on the given Joi schema
  * @param {object} schema - Joi schema
  * @returns {function} next
@@ -49,6 +63,7 @@ const file = () => async (req, res, next) => {
 };
 
 export default {
+  params,
   query,
   body,
   file,
