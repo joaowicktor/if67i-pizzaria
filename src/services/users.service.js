@@ -1,6 +1,11 @@
 import { User } from '../models/user.model.js';
 import { Exception } from '../utils/exception.js';
 
+const listUsers = async () => {
+  const users = await User.find().populate('role', 'name');
+  return users;
+}
+
 const createUser = async (payload) => {
   const existingUser = await User.findOne({ email: payload.email });
   if (existingUser) {
@@ -14,5 +19,6 @@ const createUser = async (payload) => {
 };
 
 export default {
+  listUsers,
   createUser,
 };
