@@ -1,5 +1,6 @@
-import cors from 'cors';
 import 'dotenv/config';
+
+import cors from 'cors';
 import express from 'express';
 import database from './database/index.js';
 import { errorHandlerMiddleware } from './middlewares/error-handler.middleware.js';
