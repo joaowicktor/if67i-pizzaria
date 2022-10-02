@@ -1,3 +1,4 @@
+import { supabase } from '../external-services/supabase.service.js';
 import { Post } from '../models/post.model.js';
 
 const listPosts = async ({ filter }) => {
@@ -27,10 +28,11 @@ const listPosts = async ({ filter }) => {
   return posts;
 };
 
-const createPost = async (currentUser, payload) => {
+const createPost = async (currentUser, payload, imageFile) => {
+  const uploadedFile = await supabase.storage.from('posts').upload(imageFile.filename, imageFile.buffer);
   const post = await Post.create({
     ...payload,
-    image: 'https://picsum.photos/200/300', // TODO: change to real image url
+    image: `${process.env.SUPABASE_STORAGE_URL}${uploadedFile.data.Key}`,
     user: currentUser._id,
   });
   return post;

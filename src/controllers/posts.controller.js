@@ -13,8 +13,9 @@ const list = async (req, res, next) => {
 };
 
 const create = async (req, res, next) => {
+  const { data } = req.body;
   try {
-    const post = await postsService.createPost(req.user, req.body);
+    const post = await postsService.createPost(req.user, data, req.file);
     res.status(201).json(post);
   } catch (error) {
     next(error);
