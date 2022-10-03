@@ -1,5 +1,6 @@
 import { supabase } from '../external-services/supabase.service.js';
 import { Post } from '../models/post.model.js';
+import { Exception } from '../utils/exception.js';
 
 const listPosts = async ({ filter }) => {
   const query = Post.find().populate('user', 'name');
@@ -40,6 +41,11 @@ const createPost = async (currentUser, payload, imageFile) => {
 
 const likePost = async (postId) => {
   const post = await Post.findByIdAndUpdate(postId, { $inc: { likes: 1 } }, { new: true });
+
+  if (!post) {
+    throw new Exception({ message: 'Publicação não encontrada', status: 404 });
+  }
+  
   return post;
 }
 
