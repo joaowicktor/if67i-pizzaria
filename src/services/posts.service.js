@@ -1,9 +1,11 @@
 import { supabase } from '../external-services/supabase.service.js';
 import { Post } from '../models/post.model.js';
+import { Comment } from '../models/comment.model.js';
+import mongoose from 'mongoose';
 import { Exception } from '../utils/exception.js';
 
 const listPosts = async ({ filter }) => {
-  const query = Post.find().populate('user', 'name');
+  const query = Post.find().populate('user', 'name').populate('comments', 'content');
 
   if (filter) {
     Object.keys(filter).forEach((key) => {
@@ -47,10 +49,31 @@ const likePost = async (postId) => {
   }
   
   return post;
-}
+};
+
+const commentOnPost = async (postId, content) => {
+  const session = await mongoose.connection.startSession();
+
+  try {
+    session.startTransaction();
+
+    const [comment] = await Comment.create([{ content, postId }], { session });
+    await Post.findByIdAndUpdate(postId, { $push: { comments: comment._id } }, { session });
+
+    await session.commitTransaction();
+
+    return comment;
+  } catch (error) {
+    await session.abortTransaction();
+    throw error;
+  } finally {
+    session.endSession();
+  }
+};
 
 export default {
   listPosts,
   createPost,
   likePost,
+  commentOnPost,
 };

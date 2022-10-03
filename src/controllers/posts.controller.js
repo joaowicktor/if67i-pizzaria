@@ -32,8 +32,20 @@ const like = async (req, res, next) => {
   }
 };
 
+const comment = async (req, res, next) => {
+  const { id } = req.params;
+  const { content } = req.body;
+  try {
+    const post = await postsService.commentOnPost(id, content);
+    res.json(post);
+  } catch (error) {
+    next(error);
+  }
+};
+
 export default {
   list,
   create,
   like,
+  comment,
 };

@@ -8,6 +8,7 @@ import { listPostFilterValidator } from '../validators/list-post-filter.validato
 import { upload } from '../middlewares/file-upload.middleware.js';
 import dataParserMiddleware from '../middlewares/data-parser.middleware.js';
 import { likePostParamsValidator } from '../validators/like-post.validator.js';
+import { commentPostBodyValidator, commentPostParamsValidator } from '../validators/comment-post.validator.js';
 
 const router = express.Router();
 
@@ -22,5 +23,6 @@ router.post(
   postsController.create
 );
 router.patch('/:id/like', validator.params(likePostParamsValidator), postsController.like);
+router.post('/:id/comment', validator.params(commentPostParamsValidator), validator.body(commentPostBodyValidator), postsController.comment);
 
 export default router;
