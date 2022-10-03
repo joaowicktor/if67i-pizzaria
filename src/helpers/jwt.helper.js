@@ -1,9 +1,9 @@
 import jwt from 'jsonwebtoken';
 import { Exception } from '../utils/exception.js';
 
-const generateToken = (subject, payload) =>
+const generateToken = (payload, { expiresIn, subject, secret }) =>
   new Promise((resolve, reject) => {
-    jwt.sign(payload, process.env.JWT_SECRET, { subject, expiresIn: process.env.JWT_EXPIRES_IN }, (err, token) => {
+    jwt.sign(payload ?? {}, secret, { subject, expiresIn }, (err, token) => {
       if (err) {
         reject(new Exception({ message: 'Ocorreu um erro não esperado ao gerar o token', status: 500 }));
       }
@@ -11,9 +11,9 @@ const generateToken = (subject, payload) =>
     });
   });
 
-const verifyToken = (token) =>
+const verifyToken = (token, secret) =>
   new Promise((resolve, reject) => {
-    jwt.verify(token, process.env.JWT_SECRET, (err, decoded) => {
+    jwt.verify(token, secret, (err, decoded) => {
       if (err) {
         reject(
           new Exception({

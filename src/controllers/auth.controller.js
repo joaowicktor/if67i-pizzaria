@@ -9,6 +9,16 @@ const login = async (req, res, next) => {
   }
 };
 
+const refreshAccessToken = async (req, res, next) => {
+  try {
+    const data = await authService.refreshAccessToken(req.user);
+    return res.status(200).send(data);
+  } catch (error) {
+    return next(error);
+  }
+};
+
 export default {
   login,
+  refreshAccessToken,
 };
