@@ -38,7 +38,13 @@ const createPost = async (currentUser, payload, imageFile) => {
   return post;
 };
 
+const likePost = async (postId) => {
+  const post = await Post.findByIdAndUpdate(postId, { $inc: { likes: 1 } }, { new: true });
+  return post;
+}
+
 export default {
   listPosts,
   createPost,
+  likePost,
 };

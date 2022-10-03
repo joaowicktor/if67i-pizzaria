@@ -11,6 +11,7 @@ const PostSchema = new Schema(
     price: { type: Number, required: true },
     user: { type: Schema.Types.ObjectId, ref: User },
     comments: [{ type: Schema.Types.ObjectId, ref: Comment }],
+    likes: { type: Number, default: 0 },
   },
   { collection: 'posts', timestamps: true }
 );

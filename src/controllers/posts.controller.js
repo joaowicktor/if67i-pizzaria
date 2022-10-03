@@ -22,7 +22,18 @@ const create = async (req, res, next) => {
   }
 };
 
+const like = async (req, res, next) => {
+  const { id } = req.params;
+  try {
+    const post = await postsService.likePost(id);
+    res.json(post);
+  } catch (error) {
+    next(error);
+  }
+};
+
 export default {
   list,
   create,
+  like,
 };

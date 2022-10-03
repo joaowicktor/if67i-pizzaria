@@ -7,6 +7,7 @@ import { createPostValidator } from '../validators/create-post.validator.js';
 import { listPostFilterValidator } from '../validators/list-post-filter.validator.js';
 import { upload } from '../middlewares/file-upload.middleware.js';
 import dataParserMiddleware from '../middlewares/data-parser.middleware.js';
+import { likePostParamsValidator } from '../validators/like-post.validator.js';
 
 const router = express.Router();
 
@@ -20,5 +21,6 @@ router.post(
   validator.body(createPostValidator),
   postsController.create
 );
+router.patch('/:id/like', validator.params(likePostParamsValidator), postsController.like);
 
 export default router;
