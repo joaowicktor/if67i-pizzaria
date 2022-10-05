@@ -11,7 +11,7 @@ const createUser = async (payload) => {
   if (existingUser) {
     throw new Exception({
       status: 409,
-      message: 'User already exists',
+      message: 'Usuário já cadastrado',
     });
   }
   const user = await User.create(payload);
