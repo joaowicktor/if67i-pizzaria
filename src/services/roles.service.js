@@ -1,5 +1,6 @@
 import { Permission } from '../models/permission.model.js';
 import { Role } from '../models/role.model.js';
+import { User } from '../models/user.model.js';
 import { Exception } from '../utils/exception.js';
 
 const listRoles = async () => {
@@ -56,7 +57,25 @@ const updateRole = async (id, payload) => {
 };
 
 const deleteRole = async (id) => {
-  return Role.findByIdAndDelete(id);
+  const role = await Role.findById(id);
+
+  if (!role) {
+    throw new Exception({
+      status: 404,
+      message: 'Papel não encontrado',
+    });
+  }
+
+  const users = await User.find({ role: id });
+  
+  if (users.length > 0) {
+    throw new Exception({
+      status: 409,
+      message: 'Existem usuários com esse papel, edite-os antes de deletar',
+    });
+  }
+
+  return role.deleteOne();
 };
 
 export default {
