@@ -33,7 +33,9 @@ const updateUser = async (id, payload) => {
 };
 
 const updateSelfData = async (currentUser, payload) => {
-  await User.findByIdAndUpdate(currentUser.id, payload);
+  const user = await User.findById(currentUser.id);
+
+  await user.updateOne(payload);
   return;
 };
 
