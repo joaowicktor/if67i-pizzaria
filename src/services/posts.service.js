@@ -51,6 +51,11 @@ const likePost = async (postId) => {
   return post;
 };
 
+const listPostComments = async (postId) => {
+  const comments = await Comment.find({ postId });
+  return comments;
+}
+
 const commentOnPost = async (postId, content) => {
   const session = await mongoose.connection.startSession();
 
@@ -75,5 +80,6 @@ export default {
   listPosts,
   createPost,
   likePost,
+  listPostComments,
   commentOnPost,
 };

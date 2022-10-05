@@ -23,6 +23,7 @@ router.post(
   postsController.create
 );
 router.patch('/:id/like', validator.params(likePostParamsValidator), postsController.like);
+router.get('/:id/comments', validator.params(commentPostParamsValidator), postsController.listComments);
 router.post('/:id/comment', validator.params(commentPostParamsValidator), validator.body(commentPostBodyValidator), postsController.comment);
 
 export default router;
