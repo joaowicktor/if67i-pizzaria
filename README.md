@@ -20,3 +20,21 @@ yarn dev
 
 - **data**: Campo com dados da publicação em formato json
 - **image**: Campo para upload de imagem
+
+### Observações
+
+- O sistema possui rotas públicas e privadas utilizando o conceito de `JWT + RefreshToken` conforme solicitado nos requisitos do projeto.
+- Para o banco de dados está sendo utilizado o banco NoSQL `MongoDB` na plataforma cloud MongoDB Atlas.
+- O sistema de permissões do projeto é baseado no conceito `RBAC` (Role-based access control), portanto, usuários possuem papéis e os papéis possuem N permissões. Por padrão estão disponíveis os papéis `ADMIN`, `MANAGER` e `USER`, cada um com suas restrições de acesso aos recursos do sistema. As permissões disponíveis estão descritas na tabela abaixo:
+  | Chave       	| Descrição                         	|
+  |-------------	|-----------------------------------	|
+  | read:user   	| Permite listar os usuários        	|
+  | create:user 	| Permite criar um novo usuário     	|
+  | edit:user   	| Permite editar um usuário         	|
+  | delete:user 	| Permite deletar um usuário        	|
+  | read:role   	| Permite listar os papéis          	|
+  | create:role 	| Permite criar um novo papel       	|
+  | edit:role   	| Permite editar um papel           	|
+  | delete:role 	| Permite deletar um papel          	|
+  | create:post 	| Permite fazer uma nova publicação 	|
+- A demonstração do projeto está disponível na plataforma `Heroku` pela URL [https://if67i-pizzaria.herokuapp.com](https://if67i-pizzaria.herokuapp.com/), conforme solicitado em um dos itens complementares descritos no projeto.
