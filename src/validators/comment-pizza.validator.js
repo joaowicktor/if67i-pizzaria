@@ -1,6 +1,6 @@
 import joi from 'joi';
 
-export const commentPostBodyValidator = joi.object({
+export const commentPizzaBodyValidator = joi.object({
   content: joi.string().required().messages({
     'string.base': 'O comentário deve ser uma string',
     'string.empty': 'O comentário não pode ser vazio',
@@ -8,7 +8,7 @@ export const commentPostBodyValidator = joi.object({
   }),
 });
 
-export const commentPostParamsValidator = joi.object({
+export const commentPizzaParamsValidator = joi.object({
   id: joi
     .string()
     .regex(/^[0-9a-fA-F]{24}$/) // MongoDB ObjectId Regex

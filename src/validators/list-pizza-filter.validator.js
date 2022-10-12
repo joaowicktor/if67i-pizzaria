@@ -1,6 +1,6 @@
 import joi from 'joi';
 
-export const listPostFilterValidator = joi.object({
+export const listPizzaFilterValidator = joi.object({
   filter: joi
     .object({
       maxPrice: joi.number().integer().min(0).optional().messages({

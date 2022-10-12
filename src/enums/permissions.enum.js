@@ -7,5 +7,5 @@ export const Permission = Object.freeze({
   CREATE_ROLE: 'create:role',
   EDIT_ROLE: 'edit:role',
   DELETE_ROLE: 'delete:role',
-  CREATE_POST: 'create:post',
+  CREATE_PIZZA: 'create:pizza',
 });

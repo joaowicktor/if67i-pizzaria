@@ -3,7 +3,7 @@ import { Schema, model } from 'mongoose';
 const CommentSchema = new Schema(
   {
     content: { type: String, required: true },
-    postId: { type: Schema.Types.ObjectId, ref: 'Post' },
+    pizzaId: { type: Schema.Types.ObjectId, ref: 'Pizza' },
   },
   { collection: 'comments', timestamps: true }
 );

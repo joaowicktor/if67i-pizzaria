@@ -1,6 +1,6 @@
 import joi from 'joi';
 
-export const likePostParamsValidator = joi.object({
+export const likePizzaParamsValidator = joi.object({
   id: joi
     .string()
     .regex(/^[0-9a-fA-F]{24}$/) // MongoDB ObjectId Regex

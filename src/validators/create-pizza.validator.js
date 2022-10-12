@@ -1,6 +1,6 @@
 import joi from 'joi';
 
-export const createPostValidator = joi.object({
+export const createPizzaValidator = joi.object({
   data: joi
     .object({
       name: joi.string().required().messages({

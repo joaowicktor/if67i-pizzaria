@@ -2,7 +2,7 @@ import { Schema, model } from 'mongoose';
 import { Comment } from './comment.model.js';
 import { User } from './user.model.js';
 
-const PostSchema = new Schema(
+const PizzaSchema = new Schema(
   {
     name: { type: String, required: true },
     description: { type: String, required: true },
@@ -13,7 +13,7 @@ const PostSchema = new Schema(
     comments: [{ type: Schema.Types.ObjectId, ref: Comment }],
     likes: { type: Number, default: 0 },
   },
-  { collection: 'posts', timestamps: true }
+  { collection: 'pizzas', timestamps: true }
 );
 
-export const Post = model('Post', PostSchema);
+export const Pizza = model('Pizza', PizzaSchema);
