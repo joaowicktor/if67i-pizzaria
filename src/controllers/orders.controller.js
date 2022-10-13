@@ -9,6 +9,16 @@ const create = async (req, res, next) => {
   }
 };
 
+const getStatistics = async (req, res, next) => {
+  try {
+    const statistics = await ordersService.getOrdersStatistics();
+    res.json(statistics);
+  } catch (error) {
+    next(error);
+  }
+};
+
 export default {
   create,
+  getStatistics,
 };
