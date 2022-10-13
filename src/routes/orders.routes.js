@@ -7,4 +7,6 @@ const router = express.Router();
 
 router.post('/', validators.body(createOrderBodyValidator), ordersController.create);
 router.get('/statistics', ordersController.getStatistics);
+router.get('/most-ordered-pizza', ordersController.getMostOrderedPizza);
+
 export default router;

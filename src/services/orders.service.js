@@ -37,7 +37,38 @@ const getOrdersStatistics = async () => {
   };
 };
 
+const getMostOrderedPizza = async () => {
+  const [pizza] = await Order.aggregate([
+    {
+      $group: {
+        _id: '$pizza',
+        total: { $sum: '$quantity' },
+      },
+    },
+    { $sort: { total: -1 } },
+    {
+      $lookup: {
+        from: 'pizzas',
+        localField: '_id',
+        foreignField: '_id',
+        as: 'pizza',
+      },
+    },
+    { $unwind: '$pizza' },
+    {
+      $project: {
+        name: '$pizza.name',
+        totalOrdered: '$total',
+      },
+    },
+    { $limit: 1 },
+  ]);
+
+  return pizza;
+};
+
 export default {
   createOrder,
   getOrdersStatistics,
+  getMostOrderedPizza,
 };

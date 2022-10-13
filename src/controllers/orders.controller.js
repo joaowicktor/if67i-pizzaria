@@ -18,7 +18,17 @@ const getStatistics = async (req, res, next) => {
   }
 };
 
+const getMostOrderedPizza = async (req, res, next) => {
+  try {
+    const mostOrderedPizza = await ordersService.getMostOrderedPizza();
+    res.json(mostOrderedPizza);
+  } catch (error) {
+    next(error);
+  }
+};
+
 export default {
   create,
   getStatistics,
+  getMostOrderedPizza,
 };
