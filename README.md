@@ -16,7 +16,7 @@ yarn
 yarn dev
 ```
 
-⚠️ Por padrão, todas as requisições com métodos HTTP POST, PUT e PATCH utilizam `application/json` no body para envio de dados, exceto pela rota POST `/posts` que utiliza do `multipart/form-data` por conta do envio de imagem da publicação. O formato para essa requisição é o seguinte:
+⚠️ Por padrão, todas as requisições com métodos HTTP POST, PUT e PATCH utilizam `application/json` no body para envio de dados, exceto pela rota POST `/pizzas` que utiliza do `multipart/form-data` por conta do envio de imagem da publicação. O formato para essa requisição é o seguinte:
 
 - **data**: Campo com dados da publicação em formato json
 - **image**: Campo para upload de imagem
@@ -36,5 +36,5 @@ yarn dev
   | create:role 	| Permite criar um novo papel       	|
   | edit:role   	| Permite editar um papel           	|
   | delete:role 	| Permite deletar um papel          	|
-  | create:post 	| Permite fazer uma nova publicação 	|
+  | create:pizza 	| Permite fazer uma nova publicação de pizza 	|
 - A demonstração do projeto está disponível na plataforma `Heroku` pela URL [https://if67i-pizzaria.herokuapp.com](https://if67i-pizzaria.herokuapp.com/), conforme solicitado em um dos itens complementares descritos no projeto.
